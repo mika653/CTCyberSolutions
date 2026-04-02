@@ -102,6 +102,7 @@
         .tab-btn[data-tab="2"].active::after { background: #2563EB; }
         .tab-btn[data-tab="3"].active::after { background: #06B6D4; }
         .tab-btn[data-tab="4"].active::after { background: #059669; }
+        .tab-btn[data-tab="5"].active::after { background: #8B5CF6; }
 
         .tab-dot {
             width: 10px;
@@ -114,6 +115,7 @@
         .tab-btn[data-tab="2"] .tab-dot { background: #2563EB; }
         .tab-btn[data-tab="3"] .tab-dot { background: #06B6D4; }
         .tab-btn[data-tab="4"] .tab-dot { background: #059669; }
+        .tab-btn[data-tab="5"] .tab-dot { background: #8B5CF6; }
 
         .tab-label-sub {
             font-size: 11px;
@@ -297,6 +299,12 @@
             <span class="tab-label-sub">Your Answers</span>
         </button>
 
+        <button class="tab-btn" data-tab="5" onclick="switchTab(5)">
+            <span class="tab-dot"></span>
+            <span>Proposal</span>
+            <span class="tab-label-sub">Pricing & Terms</span>
+        </button>
+
         <div class="viewport-controls">
             <span class="viewport-label">Preview</span>
             <button class="viewport-btn" data-viewport="mobile" onclick="setViewport('mobile')" title="Mobile (390px)">
@@ -342,6 +350,13 @@
                 title="Client Questionnaire"
                 loading="lazy"
             ></iframe>
+            <iframe
+                id="frame-5"
+                class="tab-iframe"
+                src="proposal.html"
+                title="Web Development Proposal"
+                loading="lazy"
+            ></iframe>
         </div>
     </div>
 
@@ -373,6 +388,7 @@
             if (e.key === '2' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); switchTab(2); }
             if (e.key === '3' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); switchTab(3); }
             if (e.key === '4' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); switchTab(4); }
+            if (e.key === '5' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); switchTab(5); }
         });
     </script>
 
