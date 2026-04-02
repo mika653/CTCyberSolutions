@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Cyber Solutions — Website Content Questionnaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --text: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            --accent: #2563EB;
+            --accent-light: #EFF6FF;
+            --border: #E2E8F0;
+            --green: #059669;
+            --green-light: #ECFDF5;
+            --orange: #F97316;
+            --orange-light: #FFF7ED;
+            --cyan: #06B6D4;
+            --cyan-light: #ECFEFF;
+            --red-light: #FEF2F2;
+            --red: #DC2626;
+            --radius: 12px;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .header-logo span { color: var(--accent); }
+
+        .header-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Main ── */
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ── Intro ── */
+        .intro {
+            margin-bottom: 48px;
+        }
+
+        .intro h1 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .intro p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 640px;
+        }
+
+        .intro p + p { margin-top: 12px; }
+
+        .intro strong { color: var(--text); font-weight: 600; }
+
+        .time-estimate {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .time-estimate svg { width: 16px; height: 16px; color: var(--text-muted); }
+
+        /* ── Sections ── */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg { width: 20px; height: 20px; }
+
+        .section-icon.blue { background: var(--accent-light); color: var(--accent); }
+        .section-icon.green { background: var(--green-light); color: var(--green); }
+        .section-icon.orange { background: var(--orange-light); color: var(--orange); }
+        .section-icon.cyan { background: var(--cyan-light); color: var(--cyan); }
+        .section-icon.red { background: var(--red-light); color: var(--red); }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ── Questions ── */
+        .question {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .question-number {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .question-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .question-hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .question-why {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .question-why svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text);
+            background: var(--bg);
+            resize: vertical;
+            transition: border-color 0.2s ease;
+            line-height: 1.5;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea { min-height: 80px; }
+        textarea.short { min-height: 48px; }
+
+        /* ── Radio / Checkbox Options ── */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 14px;
+            color: var(--text-secondary);
+            user-select: none;
+        }
+
+        .option:hover { border-color: var(--accent); color: var(--text); }
+        .option input { display: none; }
+        .option input:checked + .option-dot { background: var(--accent); border-color: var(--accent); }
+        .option:has(input:checked) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); font-weight: 500; }
+
+        .option-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+            transition: all 0.15s ease;
+        }
+
+        .option input[type="checkbox"] + .option-dot { border-radius: 4px; }
+
+        /* ── Priority Tag ── */
+        .priority {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .priority.high { background: #FEF2F2; color: #DC2626; }
+        .priority.medium { background: #FFF7ED; color: #EA580C; }
+
+        /* ── Footer CTA ── */
+        .footer-cta {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .footer-cta h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .footer-cta p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-submit:hover { background: #1D4ED8; }
+        .btn-submit svg { width: 18px; height: 18px; }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 12px;
+        }
+
+        .btn-download:hover { background: var(--accent-light); }
+        .btn-download svg { width: 18px; height: 18px; }
+
+        .footer-note {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ── Print ── */
+        @media print {
+            .header { position: static; }
+            .question:focus-within { border-color: var(--border); box-shadow: none; }
+            .btn-submit, .btn-download { display: none; }
+            body { background: #fff; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .intro h1 { font-size: 24px; }
+            .main { padding: 24px 16px 60px; }
+            .question { padding: 20px; }
+            .option-row { flex-direction: column; }
+            .btn-download { margin-left: 0; margin-top: 12px; }
+            .footer-cta { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="header-logo">CT <span>Cyber</span> Solutions</div>
+        <div class="header-badge">Website Questionnaire</div>
+    </div>
+</header>
+
+<main class="main">
+<form action="https://formsubmit.co/mikatesalonadecastro@gmail.com" method="POST">
+    <!-- Formsubmit config -->
+    <input type="hidden" name="_subject" value="CT Cyber Solutions — Client Questionnaire Submission">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://ct-cyber-solutions.vercel.app/thank-you.html">
+    <input type="text" name="_honey" style="display:none">
+
+    <!-- Intro -->
+    <div class="intro">
+        <h1>Help Us Build Your Best Website</h1>
+        <p>We've created three website concepts for CT Cyber Solutions. To refine the final version and make it <strong>credible, trustworthy, and conversion-ready</strong>, we need some key details from you.</p>
+        <p>Answer what you can — skip what you don't have yet. Every answer makes the site stronger.</p>
+        <div class="time-estimate">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Estimated time: 15–20 minutes
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 1: Brand & Identity -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon blue">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Brand & Identity</div>
+                <div class="section-subtitle">How your company should look and feel online</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q1</div>
+            <div class="question-label">Do you have a logo file? <span class="priority high">High</span></div>
+            <div class="question-hint">If yes, please share it (PNG, SVG, or AI format preferred). If not, would you like us to create one?</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                A professional logo is the #1 trust signal visitors notice first.
+            </div>
+            <textarea name="Q1_Logo" class="short" placeholder="Yes / No / Need one created..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q2</div>
+            <div class="question-label">What does "CT" stand for?</div>
+            <div class="question-hint">We want to make sure the brand name is displayed correctly everywhere.</div>
+            <textarea name="Q2_CT_Meaning" class="short" placeholder="e.g., CyberTrust, Connecticut, founder initials..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q3</div>
+            <div class="question-label">Which design concept do you prefer?</div>
+            <div class="question-hint">Or tell us what you like from each — we can mix and match.</div>
+            <div class="option-row">
+                <label class="option"><input type="radio" name="Q3_Concept_Preference" value="Concept 1 — Dark Professional"><span class="option-dot"></span> Concept 1 — Dark Professional</label>
+                <label class="option"><input type="radio" name="Q3_Concept_Preference" value="Concept 2 — Clean Corporate"><span class="option-dot"></span> Concept 2 — Clean Corporate</label>
+                <label class="option"><input type="radio" name="Q3_Concept_Preference" value="Concept 3 — Bold Cyber"><span class="option-dot"></span> Concept 3 — Bold Cyber</label>
+            </div>
+            <textarea name="Q3_Concept_Notes" style="margin-top: 12px;" class="short" placeholder="Any elements you like from other concepts? Anything you'd change?"></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2: Credibility & Trust -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon green">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Credibility & Trust Signals</div>
+                <div class="section-subtitle">What makes prospects trust you over competitors</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q4</div>
+            <div class="question-label">Do you hold any cybersecurity certifications? <span class="priority high">High</span></div>
+            <div class="question-hint">e.g., CompTIA Security+, CISSP, CEH, CISM, CISA, etc.</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                Certifications are the strongest trust builder for cybersecurity companies.
+            </div>
+            <textarea name="Q4_Certifications" placeholder="List all certifications with issuing body..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q5</div>
+            <div class="question-label">How many years of cybersecurity experience do you have?</div>
+            <textarea name="Q5_Years_Experience" class="short" placeholder="e.g., 8 years in cybersecurity, 12 years in IT overall"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q6</div>
+            <div class="question-label">How many clients have you worked with (approximately)?</div>
+            <div class="question-hint">We used "500+" as a placeholder. What's the real number?</div>
+            <textarea name="Q6_Client_Count" class="short" placeholder="e.g., 15 active clients, 40 total since launch..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q7</div>
+            <div class="question-label">Do you have any client testimonials or reviews? <span class="priority high">High</span></div>
+            <div class="question-hint">Even 2–3 short quotes with a first name and industry make a huge difference.</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                92% of B2B buyers are more likely to purchase after reading a trusted review.
+            </div>
+            <textarea name="Q7_Testimonials" placeholder='e.g., "CT Cyber found vulnerabilities we didn&apos;t know existed." — James R., Dental Practice Owner'></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q8</div>
+            <div class="question-label">Are you partnered with any security vendors or platforms?</div>
+            <div class="question-hint">e.g., SentinelOne, CrowdStrike, Fortinet, Cisco, Microsoft Partner, etc.</div>
+            <textarea name="Q8_Vendor_Partners" class="short" placeholder="List any vendor partnerships or reseller agreements..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q9</div>
+            <div class="question-label">Do you carry any business insurance (E&O, cyber liability)?</div>
+            <div class="question-hint">Mentioning this builds trust, especially with larger SMBs.</div>
+            <textarea name="Q9_Insurance" class="short" placeholder="Yes / No / Details..."></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 3: Services & Pricing -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon orange">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Services & Pricing</div>
+                <div class="section-subtitle">Getting the offer right for your audience</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q10</div>
+            <div class="question-label">Do you want to show pricing on the website? <span class="priority medium">Medium</span></div>
+            <div class="question-hint">Options: show exact prices, show "starting at" ranges, or keep it quote-based.</div>
+            <div class="option-row">
+                <label class="option"><input type="radio" name="Q10_Pricing_Display" value="Show exact pricing"><span class="option-dot"></span> Show exact pricing</label>
+                <label class="option"><input type="radio" name="Q10_Pricing_Display" value="Show starting-at ranges"><span class="option-dot"></span> Show "starting at" ranges</label>
+                <label class="option"><input type="radio" name="Q10_Pricing_Display" value="Keep it quote-based"><span class="option-dot"></span> Keep it quote-based</label>
+            </div>
+            <textarea name="Q10_Pricing_Details" style="margin-top: 12px;" class="short" placeholder="If showing prices, what are they per tier?"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q11</div>
+            <div class="question-label">What specific tools and software do you use?</div>
+            <div class="question-hint">Naming specific tools signals expertise. Clients Google these before hiring.</div>
+            <textarea name="Q11_Tools_Software" placeholder="e.g., Nessus for vulnerability scanning, Fortinet firewalls, KnowBe4 for phishing simulations..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q12</div>
+            <div class="question-label">What industries have you served?</div>
+            <div class="question-hint">e.g., healthcare, legal, dental, construction, retail, finance, etc.</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                Industry-specific language makes your site rank for "cybersecurity for [industry]" searches.
+            </div>
+            <textarea name="Q12_Industries" placeholder="List all industries you've worked with..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q13</div>
+            <div class="question-label">Do you help with compliance frameworks?</div>
+            <div class="question-hint">e.g., HIPAA, PCI-DSS, SOC 2, CMMC, NIST, etc.</div>
+            <textarea name="Q13_Compliance" class="short" placeholder="List any compliance areas you support..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q14</div>
+            <div class="question-label">What's your typical client size?</div>
+            <div class="question-hint">Number of employees, revenue range, or however you define it.</div>
+            <textarea name="Q14_Client_Size" class="short" placeholder="e.g., 5–100 employees, under $10M revenue..."></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 4: About & Story -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+                <div class="section-title">About You & Your Story</div>
+                <div class="section-subtitle">People buy from people — let's show who's behind the company</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q15</div>
+            <div class="question-label">Can you share a short bio? <span class="priority high">High</span></div>
+            <div class="question-hint">Name, title, background, and what led you to start CT Cyber Solutions.</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                A founder story is the fastest way to build personal trust with SMB owners.
+            </div>
+            <textarea name="Q15_Bio" placeholder="e.g., I'm [Name], founder of CT Cyber Solutions. After 10 years in enterprise IT security, I saw small businesses getting ignored..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q16</div>
+            <div class="question-label">Do you have a professional headshot?</div>
+            <div class="question-hint">Pages with a real face convert 35% better than those without.</div>
+            <textarea name="Q16_Headshot" class="short" placeholder="Yes (please share) / No / Need one taken"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q17</div>
+            <div class="question-label">Is it just you, or do you have a team?</div>
+            <div class="question-hint">If you have team members, we can add a team section. If solo, we'll frame it as boutique expertise.</div>
+            <textarea name="Q17_Team" class="short" placeholder="Solo / Team of X / Network of contractors..."></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q18</div>
+            <div class="question-label">What year did you start CT Cyber Solutions?</div>
+            <textarea name="Q18_Year_Founded" class="short" placeholder="e.g., 2020"></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5: Marketing & Conversion -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon red">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Marketing & Lead Generation</div>
+                <div class="section-subtitle">How you want the site to drive new business</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q19</div>
+            <div class="question-label">What's your primary goal for the website? <span class="priority high">High</span></div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="Q19_Website_Goals" value="Generate leads"><span class="option-dot"></span> Generate leads (form submissions / calls)</label>
+                <label class="option"><input type="checkbox" name="Q19_Website_Goals" value="Establish credibility"><span class="option-dot"></span> Establish credibility when prospects look me up</label>
+                <label class="option"><input type="checkbox" name="Q19_Website_Goals" value="Educate prospects"><span class="option-dot"></span> Educate prospects about cybersecurity risks</label>
+                <label class="option"><input type="checkbox" name="Q19_Website_Goals" value="SEO ranking"><span class="option-dot"></span> Rank in search for cybersecurity services</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q20</div>
+            <div class="question-label">How do most clients find you today?</div>
+            <div class="question-hint">This helps us prioritize which channels the site should support.</div>
+            <div class="options">
+                <label class="option"><input type="checkbox" name="Q20_Lead_Channels" value="Word of mouth / referrals"><span class="option-dot"></span> Word of mouth / referrals</label>
+                <label class="option"><input type="checkbox" name="Q20_Lead_Channels" value="Google search"><span class="option-dot"></span> Google search</label>
+                <label class="option"><input type="checkbox" name="Q20_Lead_Channels" value="Social media"><span class="option-dot"></span> Social media</label>
+                <label class="option"><input type="checkbox" name="Q20_Lead_Channels" value="Networking / events"><span class="option-dot"></span> Networking / events</label>
+                <label class="option"><input type="checkbox" name="Q20_Lead_Channels" value="Other"><span class="option-dot"></span> Other</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q21</div>
+            <div class="question-label">Do you want a blog or resources section?</div>
+            <div class="question-hint">Regular content boosts SEO dramatically and positions you as an expert.</div>
+            <div class="option-row">
+                <label class="option"><input type="radio" name="Q21_Blog" value="Yes"><span class="option-dot"></span> Yes, I'd publish content</label>
+                <label class="option"><input type="radio" name="Q21_Blog" value="Maybe later"><span class="option-dot"></span> Maybe later</label>
+                <label class="option"><input type="radio" name="Q21_Blog" value="No"><span class="option-dot"></span> No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q22</div>
+            <div class="question-label">Do you have active social media accounts?</div>
+            <div class="question-hint">We'll link them in the footer. List any profiles (LinkedIn, X, Facebook, etc.).</div>
+            <textarea name="Q22_Social_Media" class="short" placeholder="e.g., LinkedIn: linkedin.com/in/... "></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q23</div>
+            <div class="question-label">Do you offer a free consultation or assessment?</div>
+            <div class="question-hint">We used "Free Assessment" as the main CTA. Is this accurate? How long does it take?</div>
+            <textarea name="Q23_Free_Assessment" class="short" placeholder="e.g., Yes, 30-minute free consultation call..."></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 6: Technical & Logistics -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon blue">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+                <div class="section-title">Technical & Logistics</div>
+                <div class="section-subtitle">Practical details for launch</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q24</div>
+            <div class="question-label">Do you own the domain ctcybersolutions.net?</div>
+            <div class="question-hint">Also — would you prefer a .com if available?</div>
+            <textarea name="Q24_Domain" class="short" placeholder="Yes / No / Would like to explore .com options"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q25</div>
+            <div class="question-label">Where should the contact form submissions go?</div>
+            <textarea name="Q25_Form_Email" class="short" placeholder="e.g., ctisue@ctcybersolutions.net or a different email"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q26</div>
+            <div class="question-label">Do you want Google Analytics or call tracking set up?</div>
+            <div class="option-row">
+                <label class="option"><input type="checkbox" name="Q26_Tracking" value="Google Analytics"><span class="option-dot"></span> Google Analytics</label>
+                <label class="option"><input type="checkbox" name="Q26_Tracking" value="Call tracking"><span class="option-dot"></span> Call tracking</label>
+                <label class="option"><input type="checkbox" name="Q26_Tracking" value="Not sure"><span class="option-dot"></span> Not sure</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q27</div>
+            <div class="question-label">Do you have a Google Business Profile set up?</div>
+            <div class="question-hint">Critical for local SEO — "cybersecurity near me" searches.</div>
+            <div class="question-why">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                A claimed Google Business Profile boosts local search visibility by up to 70%.
+            </div>
+            <textarea name="Q27_Google_Business" class="short" placeholder="Yes / No / Need help setting one up"></textarea>
+        </div>
+
+        <div class="question">
+            <div class="question-number">Q28</div>
+            <div class="question-label">Anything else we should know?</div>
+            <div class="question-hint">Competitors you admire, features you want, things you definitely don't want, deadlines, etc.</div>
+            <textarea name="Q28_Other" placeholder="Anything goes here..."></textarea>
+        </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="footer-cta">
+        <h3>That's it — thank you!</h3>
+        <p>Your answers will help us build a website that converts visitors into clients. We'll follow up within 48 hours with a refined design.</p>
+        <button type="submit" class="btn-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Submit Questionnaire
+        </button>
+        <button type="button" class="btn-download" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print / Save as PDF
+        </button>
+        <p class="footer-note">Responses are sent directly to the development team. You can also print a copy for your records.</p>
+    </div>
+
+</form>
+</main>
+
+<script>
+    function handlePrint() {
+        window.print();
+    }
+</script>
+
+</body>
+</html>
